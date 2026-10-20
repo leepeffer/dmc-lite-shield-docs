@@ -158,7 +158,7 @@ for name,title,sub,regions,note in focuses:
  for x,y,w,h in regions:
   parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="5" fill="black"/>')
  parts += ['</mask></defs>',f'<image width="934" height="1146" href="data:image/png;base64,{DATA}"/>',
-  '<rect width="934" height="1146" fill="white" opacity="0.86" mask="url(#context-wash)"/>']
+  '<rect width="934" height="1146" fill="white" opacity="0.30" mask="url(#context-wash)"/>']
  for x,y,w,h in regions:
   parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="5" fill="none" stroke="{BLUE}" stroke-width="2"/>')
  parts += ['</svg>',f'<text x="30" y="956" font-family="Arial,Helvetica,sans-serif" font-size="21" fill="{INK}">{escape(note)}</text>',
