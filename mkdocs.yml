@@ -49,8 +49,10 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started:
-      - Overview: getting-started/overview.md
+  - Start Here:
+      - 1. Connect Hardware: getting-started/overview.md
+      - 2. Flash Arduino: setup/firmware.md
+      - 3. First Motor Movement: setup/dragonframe.md
       - What's in the Box: getting-started/whats-in-the-box.md
       - Prerequisites: getting-started/prerequisites.md
   - Hardware:
@@ -58,9 +60,7 @@ nav:
       - Wiring & Connections: hardware/wiring.md
       - LED Indicators: hardware/indicators.md
       - Replacing a Driver: hardware/driver-replacement.md
-  - Setup:
-      - Find Sketches & Flash Arduino: setup/firmware.md
-      - Dragonframe Configuration: setup/dragonframe.md
+  - Controls:
       - Triggers, Switches & Relay: setup/triggers.md
       - E-Stop Setup: setup/estop.md
   - Troubleshooting: troubleshooting.md
@@ -73,3 +73,6 @@ extra:
   social:
     - icon: fontawesome/solid/globe
       link: https://www.dmclite.com
+
+extra_css:
+  - stylesheets/guide.css

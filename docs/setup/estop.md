@@ -25,9 +25,30 @@ The official Dragonframe 2026 firmware includes `KILL_SWITCH_NORMALLY_CLOSED`; t
 
 **D1 lights when the terminal is grounded.** With normally-closed wiring, that may mean the normal, unpressed state; the LED can go out when stopping. It does not confirm the software acted.
 
+<div class="guide-desktop" markdown>
+
 [![Normally-open and normally-closed stop contact states, including broken-wire behavior.](../assets/images/estop-states.svg)](../assets/images/estop-states.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+
+
+Wire **J5 pin 6 → stop contact → GND (pin 1 or 7)**. No external voltage.
+
+| Contact mode | Normal | Stop | Broken wire |
+|---|---|---|---|
+| Normally open | Open | Closed | Not detected |
+| Normally closed | Closed | Open | Stop request |
+
+Enable D48; NC behavior requires firmware that implements NC mode. Red LED means grounded input. This does not cut motor power.
+
+[Open full diagram](../assets/images/estop-states.svg)
+
+</div>
+
+
 
 ## Test before motion
 

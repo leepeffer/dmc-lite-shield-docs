@@ -11,9 +11,35 @@ A trigger **output** tells another device when a Dragonframe event occurs. The S
 | Pushbutton requests a Dragonframe action | J5 pin 5 SWITCH to pin 1 or 7 GND | Normally open contact; closure asserts D49 low |
 | Camera remote meter/shutter | J6 camera jack | Separate contact closures; see [camera wiring](../hardware/wiring.md#j6-camera-remote-release) |
 
+<div class="guide-desktop" markdown>
+
 [![J5 top to bottom: pin 7 GND, 6 E-stop, 5 SWITCH, 4 relay contact, 3 relay contact, 2 LOG2, 1 GND.](../assets/images/control-terminal.svg)](../assets/images/control-terminal.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+![control terminal detail 1; meaning below.](../assets/images/control-terminal-detail-1.svg)
+
+**Top to bottom, in this board view:**
+
+| Pin | Connection |
+|---|---|
+| 7 | GND |
+| 6 | E-stop contact to GND |
+| 5 | SWITCH: normally open button to GND |
+| 4 | RELAY−: floating contact B |
+| 3 | RELAY+: floating contact A |
+| 2 | LOGIC: LOG2 output |
+| 1 | GND |
+
+**Relay contacts supply no voltage.** LOG1 controls the pair; LOG2 is separate.
+
+[Open full diagram](../assets/images/control-terminal.svg)
+
+</div>
+
+
 
 ## Connect Dragonframe first
 
@@ -25,9 +51,27 @@ That chapter primarily illustrates other Dragonframe controllers. This shield co
 
 ## Wiring examples
 
+<div class="guide-desktop" markdown>
+
 [![Three wiring examples: pushbutton between SWITCH and GND, relay across contact input, LOG2 plus common to logic receiver.](../assets/images/trigger-wiring.svg)](../assets/images/trigger-wiring.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+
+
+**Button → SWITCH:** normally open button between J5 **5** and GND **1 or 7**. Enable D49 and assign the action in Dragonframe.
+
+**Relay → contact input:** connect J5 **3 and 4** across the receiver’s dry-contact input. LOG1 controls it; no voltage supplied.
+
+**LOG2 → logic receiver:** J5 **2** is signal; **1 or 7** is common. Verify receiver compatibility with the nominal 5 V stage and 1 kΩ series resistor. Do not drive a lamp or motor directly.
+
+[Open full diagram](../assets/images/trigger-wiring.svg)
+
+</div>
+
+
 
 ## Example: a pushbutton to shoot a frame
 

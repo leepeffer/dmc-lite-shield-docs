@@ -2,9 +2,41 @@
 
 The lights show local circuit activity. They do not report motor position, camera capture success or a tested safety state. The table describes intended V2 circuit behavior; physical LED operation remains to be checked on the first boards.
 
+<div class="guide-desktop" markdown>
+
 [![LED locations and meanings: power, E-stop contact, switch, relay drive, LOG2 and eight STEP indicators.](../assets/images/led-map.svg)](../assets/images/led-map.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+![led map detail 1; meaning below.](../assets/images/led-map-detail-1.svg)
+
+**P — Power (D11):** indicator circuit powered.
+
+**E — E-stop (D1):** terminal grounded, not proof of stopping.
+
+**S — SWITCH (D28):** contact asserted / input low.
+
+![led map detail 2; meaning below.](../assets/images/led-map-detail-2.svg)
+
+**R — Relay (D26):** coil drive active; contacts not verified.
+
+**L — LOG2 (D27):** buffer active before its output resistor.
+
+![led map detail 3; meaning below.](../assets/images/led-map-detail-3.svg)
+
+![led map detail 4; meaning below.](../assets/images/led-map-detail-4.svg)
+
+**1–8 — STEP activity:** D3, D18, D19, D20, D21, D22, D23, D24 respectively. Activity is not motor-position feedback.
+
+**NC E-stop:** the red light may be on during normal operation. Verify firmware mode.
+
+[Open full diagram](../assets/images/led-map.svg)
+
+</div>
+
+
 
 | Indicator | PCB reference | Meaning when lit | What it does not confirm |
 |---|---|---|---|

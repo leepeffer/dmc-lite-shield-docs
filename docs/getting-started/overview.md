@@ -1,8 +1,25 @@
 # First setup
 
+<div class="guide-desktop" markdown>
+
 [![Computer connects by USB to GIGA and shield; STEP/DIR to external driver; separate driver supply powers motor.](../assets/images/system-connections.svg)](../assets/images/system-connections.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+
+
+1. **Computer → GIGA + shield:** USB data cable; Dragonframe talks to dmc-lite.
+2. **Shield → external driver:** STEP/DIR signal cable.
+3. **External driver → motor:** motor winding cable.
+4. **Separate motor supply → external driver:** follow its manual. The shield does not power motors.
+
+[Open full diagram](../assets/images/system-connections.svg)
+
+</div>
+
+
 
 ## Before connecting
 
@@ -21,5 +38,3 @@ A channel LED means STEP signal activity. It does not prove that the motor moved
 ## Board in three dimensions
 
 [![Three-quarter Fusion CAD view showing motor ports, terminal block, socketed driver positions and DB37.](../assets/images/board-isometric-view.svg)](../assets/images/board-isometric-view.svg)
-
-*Tap or click to enlarge.*

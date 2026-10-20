@@ -4,9 +4,27 @@ The **Arduino GIGA**, not the shield itself, runs Dragonframe's **dmc-lite** fir
 
 If your GIGA arrived configured, record its firmware version and input options before changing anything. The first prototype's installed firmware has not yet been recorded; this guide does not certify a pre-flashed image.
 
+<div class="guide-desktop" markdown>
+
 [![Find paired sketches in Dragonframe, upload M7 then M4 with matching flash split, then connect Dragonframe.](../assets/images/flashing-workflow.svg)](../assets/images/flashing-workflow.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+
+
+1. **Find sketches:** Dragonframe installation → Resources → Arc Motion Control → dmc.
+2. **Upload M7:** open `dmc_m7.ino`; target **Main core**.
+3. **Upload M4:** open matching `dmc_m4.ino`; target **M4 Co-processor**.
+4. For both: **1.5MB M7 + 0.5MB M4** flash split. Click **Upload**, not just Verify.
+5. **Connect:** Scene → Connections → dmc-lite; choose ArcMoco slot and GIGA port.
+
+[Open full diagram](../assets/images/flashing-workflow.svg)
+
+</div>
+
+
 
 ## 1. Find the sketches on your computer
 

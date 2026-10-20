@@ -165,3 +165,20 @@ for name,title,sub,regions,note in focuses:
   f'<text x="30" y="1008" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="{MUTED}">V2 top-view CAD • Fading indicates focus, not part color.</text></svg>']
  (OUT/name).write_text(''.join(parts)+'\n')
 print('Built 15 SVG figures; original source image remains unchanged.')
+
+# Mobile viewport crops keep the same source coordinates and annotations.
+import re
+mobile_regions = {
+ 'board-tour': [(0,120,700,810)],
+ 'led-map': [(180,130,410,115),(520,245,110,215),(50,480,320,390),(370,480,320,390)],
+ 'control-terminal': [(25,135,540,580)],
+ 'driver-map': [(65,180,630,500),(695,180,630,500)],
+ 'rj45-pinout': [(25,140,460,470)],
+ 'db37-pinout': [(75,120,1250,230)],
+ 'camera-contacts': [(20,135,595,345)],
+}
+for name, boxes in mobile_regions.items():
+    original = (OUT / (name + '.svg')).read_text()
+    for i, (x,y,w,h) in enumerate(boxes):
+        cropped = re.sub(r'<svg\b[^>]*>', f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="{x} {y} {w} {h}" role="img">', original, count=1)
+        (OUT / f'{name}-detail-{i+1}.svg').write_text(cropped)

@@ -1,0 +1,8 @@
+.guide-mobile { display: none; }
+@media (max-width: 48rem) {
+  .guide-desktop { display: none; }
+  .guide-mobile { display: block; }
+  .guide-mobile p, .guide-mobile li, .guide-mobile td, .guide-mobile th { font-size: .8rem; }
+  .guide-mobile img { display: block; max-height: 32rem; width: auto; max-width: 100%; margin-inline: auto; }
+  .guide-mobile a { display: inline-block; padding-block: .6rem; }
+}

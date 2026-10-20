@@ -31,3 +31,7 @@ RJ45 and DB37 images give logical pin assignments, without asserting a mating-fa
 ## Rebuilding vector figures
 
 From the repository root, run `python3 tools/build_guide_figures.py`. This regenerates the fifteen annotated and explanatory SVG figures from the preserved source screenshot. The three-quarter view wrapper is a separate static SVG. Review changed arrows against the CAD before publication; never infer a pinout from an attractive illustration.
+
+## Phone layouts
+
+Wide figures have mobile alternatives: cropped views plus normal HTML captions and tables. They preserve the same image coordinates and component markers. `build_guide_figures.py` also regenerates these detail views. Full diagrams remain available through a link; desktop readers retain the original figures.

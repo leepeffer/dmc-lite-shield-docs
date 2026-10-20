@@ -2,15 +2,59 @@
 
 **Power off before wiring.** Pin numbers below are connector/CAD pin numbers, not an instruction to count left-to-right. Mating-face and solder-side views are mirrored. The J5 close-up identifies its top-view numbering. RJ45 and DB37 figures are function maps, not mating-face pin diagrams: identify their numbered contacts from the connector drawing or continuity-check with power disconnected. If you cannot establish pin 1, do not guess.
 
+<div class="guide-desktop" markdown>
+
 [![Top-view connector locations and board functions.](../assets/images/board-tour.svg)](../assets/images/board-tour.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+![board tour detail 1; meaning below.](../assets/images/board-tour-detail-1.svg)
+
+1. **Camera:** J6 meter and shutter contacts.
+2. **Drivers:** U1/U2/U5/U6, two axes per IC.
+3. **Controls:** J5 relay, LOG2 and switch inputs.
+4. **RJ45:** eight motor-signal ports, never Ethernet.
+5. **DB37:** the same eight axes, single-ended.
+6. **Lights:** power, STEP and control activity.
+
+[Open full diagram](../assets/images/board-tour.svg)
+
+</div>
+
+
 
 ## RJ45 motor outputs
 
+<div class="guide-desktop" markdown>
+
 [![RJ45 pin-function reference; pins 1/2 STEP pair and 3/6 DIR pair.](../assets/images/rj45-pinout.svg)](../assets/images/rj45-pinout.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+![rj45 pinout detail 1; meaning below.](../assets/images/rj45-pinout-detail-1.svg)
+
+| Pin | Signal |
+|---|---|
+| 1 | STEP+ |
+| 2 | STEP− |
+| 3 | DIR+ |
+| 4 | +5 V accessory |
+| 5 | GND |
+| 6 | DIR− |
+| 7 | +5 V accessory |
+| 8 | GND |
+
+Twisted pairs: **1/2 and 3/6**. Negative outputs are not ground. This is a function table, not a mating-face drawing. Never connect Ethernet/PoE.
+
+[Open full diagram](../assets/images/rj45-pinout.svg)
+
+</div>
+
+
 
 RJ45_1 serves channel 1, through RJ45_8 for channel 8. Every jack uses the same assignment:
 
@@ -31,9 +75,27 @@ The signal assignment follows the DMC-32 motion connector convention, but a cabl
 
 ## DB37 motor outputs
 
+<div class="guide-desktop" markdown>
+
 [![DB37 channel-to-pin mapping, common pins and unconnected pins.](../assets/images/db37-pinout.svg)](../assets/images/db37-pinout.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+![db37 pinout detail 1; meaning below.](../assets/images/db37-pinout-detail-1.svg)
+
+For channels **1–8**, STEP+ uses pins **2–9** and DIR+ uses **21–28**, in channel order.
+
+**GND:** 1, 18, 19. **+5 V accessory:** 20, 37.
+
+**Unconnected:** 10–17, 29–36. No negative STEP/DIR outputs. Identify physical pin numbers from the connector drawing.
+
+[Open full diagram](../assets/images/db37-pinout.svg)
+
+</div>
+
+
 
 DB37 carries the same eight channels in single-ended form. It does not provide the negative signals.
 
@@ -58,9 +120,35 @@ Check any legacy/Kuper adapter pin-by-pin. There is no charge-pump output, limit
 
 ## J5: seven-position control terminal
 
+<div class="guide-desktop" markdown>
+
 [![J5 top-view terminal numbering and functions.](../assets/images/control-terminal.svg)](../assets/images/control-terminal.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+![control terminal detail 1; meaning below.](../assets/images/control-terminal-detail-1.svg)
+
+**Top to bottom, in this board view:**
+
+| Pin | Connection |
+|---|---|
+| 7 | GND |
+| 6 | E-stop contact to GND |
+| 5 | SWITCH: normally open button to GND |
+| 4 | RELAY−: floating contact B |
+| 3 | RELAY+: floating contact A |
+| 2 | LOGIC: LOG2 output |
+| 1 | GND |
+
+**Relay contacts supply no voltage.** LOG1 controls the pair; LOG2 is separate.
+
+[Open full diagram](../assets/images/control-terminal.svg)
+
+</div>
+
+
 
 | Pin | Label/function | Connect to |
 |---:|---|---|
@@ -88,9 +176,25 @@ J6 provides isolated contact closures for a camera remote-release interface:
 
 These are **PCB pad assignments, not verified tip/ring/sleeve assignments**. The jack is SJ-2523-SMT-TR. A cable must be checked against its drawing, continuity measurements and the camera's remote-release manual before use. Do not use this table alone to solder a plug. Camera-common is not a request to connect to the shield's logic GND.
 
+<div class="guide-desktop" markdown>
+
 [![Camera jack location and PCB contact functions; plug tip/ring/sleeve mapping still requires verification.](../assets/images/camera-contacts.svg)](../assets/images/camera-contacts.svg)
 
-*Tap or click to enlarge.*
+</div>
+
+<div class="guide-mobile" markdown>
+
+![camera contacts detail 1; meaning below.](../assets/images/camera-contacts-detail-1.svg)
+
+**J6 PCB pads:** 1 common, 2 shutter, 3 meter/pre-shutter.
+
+These are contact closures to camera common. **Not verified tip/ring/sleeve assignments.** Check the cable before wiring.
+
+[Open full diagram](../assets/images/camera-contacts.svg)
+
+</div>
+
+
 
 A remote-release connection does not provide live view or image transfer. Follow [Dragonframe's camera setup](https://www.dragonframe.com/camera-support/) for the camera's USB connection and capture settings.
 
