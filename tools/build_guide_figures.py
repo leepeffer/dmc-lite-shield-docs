@@ -134,4 +134,34 @@ f.card(680,245,'2','Shutter',['J6 PCB pad 2 → contact to common'],670)
 f.card(680,345,'3','Meter / pre-shutter',['J6 PCB pad 3 → contact to common'],670)
 f.box(40,510,1320,75,'#fff3df');f.text(65,542,'PCB pad numbers are NOT tip / ring / sleeve assignments.',25,bold=True);f.text(65,572,'Verify the jack and camera cable by continuity before wiring. No plug-pin diagram is asserted here.',21)
 f.footer();f.save('camera-contacts.svg')
-print('Built 11 SVG figures from the unchanged source image and explicit vector diagrams.')
+# Large-component focus plates: retain source pixels, wash out only the context.
+# Coordinates are in the unchanged 934 x 1146 top-view screenshot.
+focuses = [
+ ('focus-rj45.svg', 'Eight RJ45 motor ports', 'CH1–4 above • CH5–8 below',
+  [(70,464,174,206),(275,464,173,206),(481,464,174,206),(687,464,174,206),
+   (73,737,174,206),(277,737,174,206),(484,737,174,206),(688,737,174,206)],
+  'STEP / DIR signals to external drivers. Not Ethernet.'),
+ ('focus-db37.svg', 'DB37 motor output', 'Same eight channels • Single-ended signals',
+  [(79,973,774,142)], 'Alternative motor-signal connection; not extra axes.'),
+ ('focus-drivers.svg', 'Four replaceable driver ICs', 'U1 · U2 · U5 · U6',
+  [(88,174,112,230),(229,174,113,230),(375,174,113,230),(518,174,113,230)],
+  'Two axes per IC • AM26C31IN / AM26C31INE4, PDIP-16.'),
+ ('focus-terminal.svg', 'Seven screw terminals', 'J5 • Controls and triggers',
+  [(803,127,83,279)], 'GND, E-stop, SWITCH, relay contacts and LOG2.'),
+]
+for name,title,sub,regions,note in focuses:
+ parts=[f'<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1040" viewBox="0 0 700 1040" role="img"><title>{escape(title)}</title><desc>{escape(sub)}. Original components remain visible while surrounding board is faded white.</desc><rect width="700" height="1040" fill="white"/>',
+  f'<text x="30" y="48" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="700" fill="{INK}">{escape(title)}</text>',
+  f'<text x="30" y="82" font-family="Arial,Helvetica,sans-serif" font-size="21" fill="{MUTED}">{escape(sub)}</text>',
+  '<svg x="25" y="115" width="650" height="798" viewBox="0 0 934 1146">',
+  '<defs><mask id="context-wash"><rect width="934" height="1146" fill="white"/>']
+ for x,y,w,h in regions:
+  parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="5" fill="black"/>')
+ parts += ['</mask></defs>',f'<image width="934" height="1146" href="data:image/png;base64,{DATA}"/>',
+  '<rect width="934" height="1146" fill="white" opacity="0.86" mask="url(#context-wash)"/>']
+ for x,y,w,h in regions:
+  parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="5" fill="none" stroke="{BLUE}" stroke-width="2"/>')
+ parts += ['</svg>',f'<text x="30" y="956" font-family="Arial,Helvetica,sans-serif" font-size="21" fill="{INK}">{escape(note)}</text>',
+  f'<text x="30" y="1008" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="{MUTED}">V2 top-view CAD • Fading indicates focus, not part color.</text></svg>']
+ (OUT/name).write_text(''.join(parts)+'\n')
+print('Built 15 SVG figures; original source image remains unchanged.')

@@ -14,6 +14,24 @@ Find the connection, understand the light, then follow the setup. This visual gu
 
 [Start with one axis](getting-started/overview.md) · [All pinouts](hardware/wiring.md) · [Troubleshooting](troubleshooting.md)
 
+## Find the main connectors and components
+
+The highlighted parts keep their original appearance; the surrounding board fades into the background. Tap a view to enlarge.
+
+<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));" markdown>
+
+[![Eight RJ45 motor ports in full contrast, with the rest of the board faded white.](assets/images/focus-rj45.svg)](assets/images/focus-rj45.svg)
+
+[![DB37 output in full contrast, with the rest of the board faded white.](assets/images/focus-db37.svg)](assets/images/focus-db37.svg)
+
+[![Four replaceable driver ICs in full contrast, with the rest of the board faded white.](assets/images/focus-drivers.svg)](assets/images/focus-drivers.svg)
+
+[![J5 screw terminal block in full contrast, with the rest of the board faded white.](assets/images/focus-terminal.svg)](assets/images/focus-terminal.svg)
+
+</div>
+
+[Connector pinouts](hardware/wiring.md) · [Driver replacement](hardware/driver-replacement.md) · [Trigger wiring](setup/triggers.md)
+
 ## What does that light mean?
 
 [![Each board LED located and explained; STEP lights show activity, not motor position.](assets/images/led-map.svg)](assets/images/led-map.svg)

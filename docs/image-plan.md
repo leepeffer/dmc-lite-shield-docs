@@ -1,6 +1,6 @@
 # Illustration sources and remaining views
 
-The guide now includes a board tour, LED map, J5 close-up, driver-service map, RJ45 and DB37 function maps, camera contacts, trigger wiring, E-stop states, firmware workflow and system connections. A three-quarter CAD view is included in [first setup](getting-started/overview.md).
+The guide now includes four faded-context component views (RJ45 ports, DB37, driver ICs and J5), a board tour, LED map, J5 close-up, driver-service map, RJ45 and DB37 function maps, camera contacts, trigger wiring, E-stop states, firmware workflow and system connections. A three-quarter CAD view is included in [first setup](getting-started/overview.md).
 
 ## What the images show
 
@@ -15,7 +15,7 @@ The source model is not an assembled-board photograph. Generic component models,
 
 J5 is shown in the same top-view orientation as the board: **pin 7 at the top, pin 1 at the bottom**. The printed `RELAY+` / `RELAY−` labels describe two floating contacts; they are not powered outputs. Driver pin 1 is the upper-left socket contact in this top view. Check the real PCB mark before inserting an IC.
 
-RJ45 and DB37 images give logical pin assignments, without asserting a mating-face numbering convention. J6 shows PCB contact functions only; tip/ring/sleeve remains unverified. LED rings are position markers, not simulated illumination.
+RJ45 and DB37 images give logical pin assignments, without asserting a mating-face numbering convention. J6 shows PCB contact functions only; tip/ring/sleeve remains unverified. LED rings are position markers, not simulated illumination. In the four component-focus views, a white SVG overlay fades the surrounding board while the selected component regions retain their original pixels; no hardware geometry is regenerated.
 
 ## Still to capture or verify
 
@@ -30,4 +30,4 @@ RJ45 and DB37 images give logical pin assignments, without asserting a mating-fa
 
 ## Rebuilding vector figures
 
-From the repository root, run `python3 tools/build_guide_figures.py`. This regenerates the eleven annotated and explanatory SVG figures from the preserved source screenshot. The three-quarter view wrapper is a separate static SVG. Review changed arrows against the CAD before publication; never infer a pinout from an attractive illustration.
+From the repository root, run `python3 tools/build_guide_figures.py`. This regenerates the fifteen annotated and explanatory SVG figures from the preserved source screenshot. The three-quarter view wrapper is a separate static SVG. Review changed arrows against the CAD before publication; never infer a pinout from an attractive illustration.
