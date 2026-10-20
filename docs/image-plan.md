@@ -1,21 +1,33 @@
-# Planned illustrations
+# Illustration sources and remaining views
 
-Text placeholders mark the intended positions in the manual. Images will be added after the assembled V2 board is available. The tables remain the authoritative text alongside each image.
+The guide now includes a board tour, LED map, J5 close-up, driver-service map, RJ45 and DB37 function maps, camera contacts, trigger wiring, E-stop states, firmware workflow and system connections. A three-quarter CAD view is included in [first setup](getting-started/overview.md).
 
-Use a real board photograph or a verified CAD rendering as the base. Keep physical components, traces, connector positions and pin counts unchanged when adding callouts. Label a rendering as a rendering. Do not invent cable orientation, pin-1 marks or LED locations with generative artwork.
+## What the images show
 
-| Image | Required callouts | Page |
-|---|---|---|
-| Board tour | V2 revision, eight RJ45 channels, DB37, J5, J6, four driver sockets | [Home](index.md) |
-| LED map | D11 power; D3 and D18–D24 STEP channels; D26 relay; D27 LOG2; D28 switch; D1 grounded E-stop input | [Indicators](hardware/indicators.md) |
-| Connector views | Mating face versus board view, latch/key, pin 1, all RJ45 and DB37 pins | [Wiring](hardware/wiring.md) |
-| J5 close-up | All seven numbered positions; input/output direction; relay pair bracket; example button wiring | [Triggers](setup/triggers.md) |
-| Driver service | U1/U2/U5/U6 channel pairs, verified PCB pin 1 and IC notch alignment | [Replacement](hardware/driver-replacement.md) |
-| Camera cable | Measured J6 pad-to-plug mapping and named camera cable | [Wiring](hardware/wiring.md) |
-| Stop wiring | Separate NO and NC diagrams with firmware mode and normal/pressed/broken-wire states | [E-stop](setup/estop.md) |
-| Sketch locations | Finder / File Explorer installation folder, README and both sketch folders | [Flashing](setup/firmware.md) |
-| Arduino uploads | M7/M4 target cores, flash split, port, Upload button and success result | [Flashing](setup/firmware.md) |
-| Dragonframe connection | Connected dmc-lite, ArcMoco assignment, port selector | [Dragonframe](setup/dragonframe.md) |
-| Dragonframe triggers | Actual connected output selectors and confirmed physical mapping | [Triggers](setup/triggers.md) |
+- **Top view:** supplied by Lee on October 20, 2026, from Fusion's V2 DIP board. Its source pixels are retained unchanged in `assets/images/board-top-source.png`.
+- **Three-quarter view:** captured directly from the open `dmc_lite_shield-DIP-v2` Fusion document on October 20, 2026. Source retained in `assets/images/board-isometric.png`.
+- **Callouts:** SVG overlays and view crops retain the CAD image geometry. Numbering and component references were checked against the archived V2 board and pin map.
+- **Wiring/workflow diagrams:** explanatory vector drawings, not software screenshots or physical connector mating-face drawings.
 
-Keep one consistent board orientation for overview images. Use numbered callouts plus text, not color alone. If a component is on the underside, use a clearly labeled bottom-view inset. Check every arrow against the component reference and net assignment before publication. Photograph unpowered hardware for wiring/service views; any powered LED photo needs a caption stating the test condition.
+The source model is not an assembled-board photograph. Generic component models, colors and socket/IC appearances do not prove installed parts or LED illumination. The diagrams describe the circuit; physical operation still needs testing. Click any figure to open its full-resolution SVG.
+
+## Reading the annotations
+
+J5 is shown in the same top-view orientation as the board: **pin 7 at the top, pin 1 at the bottom**. The printed `RELAY+` / `RELAY−` labels describe two floating contacts; they are not powered outputs. Driver pin 1 is the upper-left socket contact in this top view. Check the real PCB mark before inserting an IC.
+
+RJ45 and DB37 images give logical pin assignments, without asserting a mating-face numbering convention. J6 shows PCB contact functions only; tip/ring/sleeve remains unverified. LED rings are position markers, not simulated illumination.
+
+## Still to capture or verify
+
+| View | Needed evidence |
+|---|---|
+| RJ45 and DB37 numbered mating faces | Connector drawing plus physical orientation check |
+| Camera cable tip/ring/sleeve | Continuity measurements and a named camera cable |
+| Actual assembled-board photograph | Received hardware; visible revision and installed IC orientation |
+| Finder / File Explorer sketch location | Platform-specific screenshots from the installed release |
+| Arduino upload dialogs | M7/M4 target settings and actual successful uploads |
+| Dragonframe trigger controls | Connected V2 and confirmed LOG1/LOG2/input mapping |
+
+## Rebuilding vector figures
+
+From the repository root, run `python3 tools/build_guide_figures.py`. This regenerates the eleven annotated and explanatory SVG figures from the preserved source screenshot. The three-quarter view wrapper is a separate static SVG. Review changed arrows against the CAD before publication; never infer a pinout from an attractive illustration.

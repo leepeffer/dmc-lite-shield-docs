@@ -1,5 +1,9 @@
 # First setup
 
+[![Computer connects by USB to GIGA and shield; STEP/DIR to external driver; separate driver supply powers motor.](../assets/images/system-connections.svg)](../assets/images/system-connections.svg)
+
+*Tap or click to enlarge.*
+
 ## Before connecting
 
 Confirm your board matches the V2 socketed DIP version in this guide. Check the shipment against its packing list and inspect for bent pins, loose ICs or damage. Gather the [required equipment](prerequisites.md).
@@ -13,3 +17,9 @@ Confirm your board matches the V2 socketed DIP version in this guide. Check the 
 7. Add [triggers and switches](../setup/triggers.md) individually, testing each without its final load first.
 
 A channel LED means STEP signal activity. It does not prove that the motor moved or reached its intended position.
+
+## Board in three dimensions
+
+[![Three-quarter Fusion CAD view showing motor ports, terminal block, socketed driver positions and DB37.](../assets/images/board-isometric-view.svg)](../assets/images/board-isometric-view.svg)
+
+*Tap or click to enlarge.*

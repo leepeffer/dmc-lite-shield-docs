@@ -4,6 +4,10 @@ The **Arduino GIGA**, not the shield itself, runs Dragonframe's **dmc-lite** fir
 
 If your GIGA arrived configured, record its firmware version and input options before changing anything. The first prototype's installed firmware has not yet been recorded; this guide does not certify a pre-flashed image.
 
+[![Find paired sketches in Dragonframe, upload M7 then M4 with matching flash split, then connect Dragonframe.](../assets/images/flashing-workflow.svg)](../assets/images/flashing-workflow.svg)
+
+*Tap or click to enlarge.*
+
 ## 1. Find the sketches on your computer
 
 Install Dragonframe first. Its official dmc-lite sketches are included in:

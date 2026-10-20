@@ -2,7 +2,9 @@
 
 The lights show local circuit activity. They do not report motor position, camera capture success or a tested safety state. The table describes intended V2 circuit behavior; physical LED operation remains to be checked on the first boards.
 
-> **Image placeholder — LED map:** top-down photograph of the actual V2 board. Highlight each LED with the reference and meaning below. Include a bottom-view inset for any indicator hidden from above; never move a callout to a more convenient component.
+[![LED locations and meanings: power, E-stop contact, switch, relay drive, LOG2 and eight STEP indicators.](../assets/images/led-map.svg)](../assets/images/led-map.svg)
+
+*Tap or click to enlarge.*
 
 | Indicator | PCB reference | Meaning when lit | What it does not confirm |
 |---|---|---|---|

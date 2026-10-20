@@ -1,10 +1,16 @@
 # Pinouts and wiring
 
-**Power off before wiring.** Pin numbers below are connector/CAD pin numbers, not an instruction to count left-to-right. Mating-face and solder-side views are mirrored. Until the illustrated views are available, identify numbered pins from the connector drawing or continuity-check with power disconnected. If you cannot establish pin 1, do not guess.
+**Power off before wiring.** Pin numbers below are connector/CAD pin numbers, not an instruction to count left-to-right. Mating-face and solder-side views are mirrored. The J5 close-up identifies its top-view numbering. RJ45 and DB37 figures are function maps, not mating-face pin diagrams: identify their numbered contacts from the connector drawing or continuity-check with power disconnected. If you cannot establish pin 1, do not guess.
 
-> **Image placeholder — connector map:** top view with RJ45_1–RJ45_8, DB37, J5 and J6. Insets must show mating faces, latch/key orientation and numbered contacts. J5 needs a verified pin-1 arrow.
+[![Top-view connector locations and board functions.](../assets/images/board-tour.svg)](../assets/images/board-tour.svg)
+
+*Tap or click to enlarge.*
 
 ## RJ45 motor outputs
+
+[![RJ45 pin-function reference; pins 1/2 STEP pair and 3/6 DIR pair.](../assets/images/rj45-pinout.svg)](../assets/images/rj45-pinout.svg)
+
+*Tap or click to enlarge.*
 
 RJ45_1 serves channel 1, through RJ45_8 for channel 8. Every jack uses the same assignment:
 
@@ -24,6 +30,10 @@ RJ45_1 serves channel 1, through RJ45_8 for channel 8. Every jack uses the same 
 The signal assignment follows the DMC-32 motion connector convention, but a cable is usable only when its far end matches your receiver. Verify continuity, input loading and grounding before power-up. Do not connect the same channel through RJ45 and DB37 to multiple loads without checking combined loading.
 
 ## DB37 motor outputs
+
+[![DB37 channel-to-pin mapping, common pins and unconnected pins.](../assets/images/db37-pinout.svg)](../assets/images/db37-pinout.svg)
+
+*Tap or click to enlarge.*
 
 DB37 carries the same eight channels in single-ended form. It does not provide the negative signals.
 
@@ -47,6 +57,10 @@ DB37 carries the same eight channels in single-ended form. It does not provide t
 Check any legacy/Kuper adapter pin-by-pin. There is no charge-pump output, limit-input bank or driver-fault return on this connector.
 
 ## J5: seven-position control terminal
+
+[![J5 top-view terminal numbering and functions.](../assets/images/control-terminal.svg)](../assets/images/control-terminal.svg)
+
+*Tap or click to enlarge.*
 
 | Pin | Label/function | Connect to |
 |---:|---|---|
@@ -74,7 +88,9 @@ J6 provides isolated contact closures for a camera remote-release interface:
 
 These are **PCB pad assignments, not verified tip/ring/sleeve assignments**. The jack is SJ-2523-SMT-TR. A cable must be checked against its drawing, continuity measurements and the camera's remote-release manual before use. Do not use this table alone to solder a plug. Camera-common is not a request to connect to the shield's logic GND.
 
-> **Image placeholder — camera cable:** jack contact numbering and measured tip/ring/sleeve mapping, with a specific verified camera cable. Pending physical continuity test.
+[![Camera jack location and PCB contact functions; plug tip/ring/sleeve mapping still requires verification.](../assets/images/camera-contacts.svg)](../assets/images/camera-contacts.svg)
+
+*Tap or click to enlarge.*
 
 A remote-release connection does not provide live view or image transfer. Follow [Dragonframe's camera setup](https://www.dragonframe.com/camera-support/) for the camera's USB connection and capture settings.
 

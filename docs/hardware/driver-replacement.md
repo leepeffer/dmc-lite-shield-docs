@@ -15,7 +15,9 @@ An AM26C31 in SOIC, SSOP or TSSOP will not plug into this socket. The AM26C31 is
 
 Each chip carries STEP and DIR for two channels, including the positive signals used by DB37. One damaged chip can affect either or both channels, or only one signal. An LED alone cannot diagnose it.
 
-> **Image placeholder — driver service map:** actual board top view with U1/U2/U5/U6, channel pairs and each pin-1 mark. Close-up of the correct DIP notch orientation and a fully seated chip. Orientation must be checked against PCB pin 1, not inferred from the camera angle or socket notch alone.
+[![U1 channels 1–2, U2 channels 3–4, U5 channels 5–6 and U6 channels 7–8; pin 1 at upper left.](../assets/images/driver-map.svg)](../assets/images/driver-map.svg)
+
+*Tap or click to enlarge.*
 
 ## Before replacing
 

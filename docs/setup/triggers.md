@@ -11,7 +11,9 @@ A trigger **output** tells another device when a Dragonframe event occurs. The S
 | Pushbutton requests a Dragonframe action | J5 pin 5 SWITCH to pin 1 or 7 GND | Normally open contact; closure asserts D49 low |
 | Camera remote meter/shutter | J6 camera jack | Separate contact closures; see [camera wiring](../hardware/wiring.md#j6-camera-remote-release) |
 
-> **Image placeholder — control terminal close-up:** number all seven J5 positions, mark input versus output, bracket relay pins 3/4 as one floating contact, and show separate example wires for a button and a logic receiver. Include LOG1 → relay and LOG2 → pin 2 labels.
+[![J5 top to bottom: pin 7 GND, 6 E-stop, 5 SWITCH, 4 relay contact, 3 relay contact, 2 LOG2, 1 GND.](../assets/images/control-terminal.svg)](../assets/images/control-terminal.svg)
+
+*Tap or click to enlarge.*
 
 ## Connect Dragonframe first
 
@@ -20,6 +22,12 @@ Follow [Dragonframe setup](dragonframe.md), then open **Scene → Triggers**. Th
 That chapter primarily illustrates other Dragonframe controllers. This shield converts **LOG1 to a mechanical relay** and exposes **LOG2 as logic**. Do not assume a panel labeled “External Switch (Relay)” maps to this board's relay. On the connected dmc-lite, test each available logic output separately and identify which activates D26/relay and D27/LOG2. The exact UI labels and output mapping still require confirmation with the prototype.
 
 > **Image placeholder — Scene → Triggers:** screenshot from a connected V2 board, with the actual LOG1/relay, LOG2 and switch-input selectors labeled. Do not substitute a DMC-32 screenshot as proof of this board's UI.
+
+## Wiring examples
+
+[![Three wiring examples: pushbutton between SWITCH and GND, relay across contact input, LOG2 plus common to logic receiver.](../assets/images/trigger-wiring.svg)](../assets/images/trigger-wiring.svg)
+
+*Tap or click to enlarge.*
 
 ## Example: a pushbutton to shoot a frame
 

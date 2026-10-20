@@ -16,6 +16,6 @@ mkdocs serve
 mkdocs build --strict
 ```
 
-Add pages to `mkdocs.yml`. Image placeholders describe the callouts needed for later photographs; see [image plan](docs/image-plan.md). Keep wiring labels anchored to verified connector pin numbers, never an assumed left-to-right view.
+Add pages to `mkdocs.yml`. Annotated CAD views and wiring diagrams illustrate the guide; see [illustration sources](docs/image-plan.md). Keep wiring labels anchored to verified connector pin numbers, never an assumed left-to-right view.
 
 GitHub Actions builds on pull requests and deploys main through GitHub Pages when Pages is configured. Repository: [leepeffer/dmc-lite-shield-docs](https://github.com/leepeffer/dmc-lite-shield-docs). Content license: [CC BY 4.0](LICENSE). External manuals retain their own licenses. This repository contains customer documentation, not manufacturing files or redistributed Dragonframe firmware.
