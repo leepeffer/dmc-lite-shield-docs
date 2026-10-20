@@ -1,93 +1,23 @@
-# Hardware Specifications
+# Hardware at a glance
 
-The DMC Lite Shield is a motion control I/O shield designed to mount on the Arduino Giga R1 WiFi microcontroller board.
+Applies to the October 16, 2026 **V2 socketed DIP** design.
 
-## Key Features
+| Feature | Interface |
+|---|---|
+| Host board | Arduino GIGA R1 WiFi |
+| Motion channels | 8 STEP/DIR channels |
+| RJ45 outputs | Complementary STEP+/STEP− and DIR+/DIR−, 5 V line-driver supply |
+| DB37 outputs | Single-ended positive STEP/DIR signals for the same eight channels |
+| Replaceable line drivers | Four TI AM26C31INE4, 16-pin PDIP; two axes per IC |
+| Control terminal | J5: GND, LOG2, relay contacts, SWITCH, E-stop, GND |
+| Camera interface | J6 2.5 mm jack; separate meter and shutter contact closures |
+| Shield power | GIGA power rails; no motor-power output |
+| Indicators | Power, eight STEP activity lights, relay drive, LOG2, switch and E-stop input |
 
-### Motion Control Outputs
+“5 V” describes the output stage supply, not a guaranteed unloaded-to-loaded voltage at every receiver. LOG2 includes a 1 kΩ series resistor; receiver loading matters. GIGA GPIO itself operates at 3.3 V.
 
-**Number of Channels**: Up to 8 stepper motor drivers
+The accessory +5 V pins have no published qualified load budget. Do not power motors or unspecified accessories from them, or back-feed them from another supply. Relay contact load ratings, cable-length limits, board temperature limits and complete-system performance are not yet qualified for this prototype.
 
-**Signal Type**: Buffered and reinforced step and direction signals
+The dmc-lite system supports eight axes, without DMC crane virtualization or a DMX output port. The Dragonframe manual lists a 50 kHz maximum STEP rate for the sketch; this is not a measured signal-integrity rating for the shield/cable/receiver combination. See [references](../references.md).
 
-**Output Voltage**: 5V logic level
-
-**Output Connectors**:
-
-- RJ45 connectors (wired exactly like DMC-32)
-- DB37 connector for legacy Kuper-compatible hardware
-
-### Camera Control
-
-**Interface**: 2.5mm audio jack
-
-**Functionality**:
-
-- Camera meter control
-- Shutter control
-
-<!-- TODO: Add specific camera control signal specifications, voltage levels, and timing -->
-
-### Emergency Stop (E-Stop)
-
-**Type**: Optically isolated e-stop output
-
-**Configuration**: Requires enabling in firmware (see [E-Stop Setup](../setup/estop.md))
-
-<!-- TODO: Add e-stop electrical specifications, isolation details, and connection requirements -->
-
-## Physical Specifications
-
-**Form Factor**: Arduino Giga R1 shield
-
-**Mounting**: Designed to mount directly onto Arduino Giga R1 WiFi with perfect fit
-
-<!-- TODO: Add physical dimensions, weight, mounting hole positions, and connector locations -->
-
-## Electrical Specifications
-
-<!-- TODO: Add the following specifications:
-- Input voltage requirements
-- Power consumption
-- Maximum current per output channel
-- Signal frequency ranges
-- Input/output protection details
--->
-
-## Pinout
-
-!!! warning "TODO: Pinout Information Needed"
-    Detailed pinout information for the RJ45, DB37, and 2.5mm jack connectors is not available on the dmclite.com website and needs to be added.
-
-<!-- TODO: Add connector pinouts:
-- RJ45 connector pinout (with reference to DMC-32 compatibility)
-- DB37 connector pinout (Kuper compatibility)
-- 2.5mm audio jack pinout for camera control
-- Arduino Giga pin usage
--->
-
-## Compatibility
-
-### Arduino Compatibility
-
-- **Compatible**: Arduino Giga R1 WiFi
-- **Not compatible**: Other Arduino models (designed specifically for Giga)
-
-### Software Compatibility
-
-- **Dragonframe**: Requires DMC Lite firmware sketch (not DF Moco sketch)
-- **Virtuals Mode**: Not supported (unlike DMC-32)
-
-### Hardware Compatibility
-
-- **Stepper Drivers**: Any driver accepting 5V step/direction signals
-- **Legacy Systems**: Kuper-compatible via DB37 output
-- **DMC-32 Cables**: RJ45 cables wired for DMC-32 are directly compatible
-
-## Environmental Specifications
-
-<!-- TODO: Add operating temperature range, humidity limits, and storage conditions -->
-
----
-
-**Next:** [Wiring & Connections](wiring.md) to learn how to connect your drivers and peripherals.
+All connector assignments are in [wiring](wiring.md). Firmware support is separate from electrical connectivity: SWITCH and E-stop require configuration.

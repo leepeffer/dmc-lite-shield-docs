@@ -1,36 +1,15 @@
-# Overview
+# First setup
 
-The DMC Lite Shield is a motion control I/O shield that mounts on the Arduino Giga R1 to provide professional motion control capabilities for Dragonframe stop-motion animation software.
+## Before connecting
 
-## Purpose
+Confirm your board matches the V2 socketed DIP version in this guide. Check the shipment against its packing list and inspect for bent pins, loose ICs or damage. Gather the [required equipment](prerequisites.md).
 
-The DMC Lite Shield serves the same purpose as the DMC-32 but with a more streamlined feature set. It's designed for motion control setups that require up to 8 channels of control.
+1. Disconnect USB, GIGA power and motor-driver power. Align all shield headers with the GIGA sockets; check for offset or bent pins before pressing evenly. Do not force it.
+2. Confirm the GIGA has a matching pair of dmc-lite firmware sketches. If its configuration is unknown, follow [firmware setup](../setup/firmware.md); do not assume optional inputs are enabled.
+3. Select one axis. With everything unpowered, check its cable against the [RJ45 or DB37 pinout](../hardware/wiring.md) and the external driver's manual. Set the driver's motor current and microstepping for your motor.
+4. Connect the GIGA to the computer with a USB data cable. Check the green power LED. Leave motor power off while establishing the [Dragonframe connection](../setup/dragonframe.md).
+5. Configure and test the [stop input](../setup/estop.md) and your rig's independent means of stopping motion. Keep travel clear; support loads that could fall.
+6. Enable motor power. Jog one axis at low speed over a short distance. Check channel, direction, distance and stop behavior before increasing speed or adding axes.
+7. Add [triggers and switches](../setup/triggers.md) individually, testing each without its final load first.
 
-### Key Differences from DMC-32
-
-!!! note "DMC Lite vs DMC-32"
-    The DMC Lite is both similar to and different from the DMC-32:
-    
-    - **Similarities**: Serves the same core motion control purpose, uses RJ45 cables wired exactly like the DMC-32
-    - **Differences**: Supports only 8 channels (vs more on DMC-32), cannot run in Virtuals mode like the DMC-32
-
-## How It Works
-
-The DMC Lite Shield runs a dedicated firmware sketch (not the DF Moco sketch) that has been significantly improved and can run motors in real-time. The shield outputs high-quality, buffered 5V step and direction signals that connect to stepper motor drivers to operate motors.
-
-!!! warning "Motor Drivers Required"
-    The DMC Lite Shield does **not** drive motors directly. It outputs step and direction signals that must connect to a separate stepper motor driver to operate a motor.
-
-## Does the Shield Include an Arduino Giga?
-
-**No**, the DMC Lite Shield does not include an Arduino Giga. You must:
-
-1. Purchase an Arduino Giga R1 separately
-2. Install the DMC Lite firmware sketch yourself
-
-!!! tip
-    If you're interested in receiving a pre-flashed Arduino Giga bundle, contact the manufacturer to discuss available options.
-
-## Next Steps
-
-Continue to [Prerequisites](prerequisites.md) to see what you'll need for a complete setup.
+A channel LED means STEP signal activity. It does not prove that the motor moved or reached its intended position.

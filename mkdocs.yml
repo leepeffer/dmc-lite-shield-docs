@@ -1,8 +1,8 @@
 site_name: DMC Lite Shield Manual
-site_url: https://dmclite.github.io/dmc-lite-shield-docs
+site_url: https://leepeffer.github.io/dmc-lite-shield-docs
 site_description: Customer manual and documentation for the DMC Lite Shield - Arduino Giga R1 motion control shield for Dragonframe
 site_author: DMC Lite
-repo_url: https://github.com/dmclite/dmc-lite-shield-docs
+repo_url: https://github.com/leepeffer/dmc-lite-shield-docs
 edit_uri: edit/main/docs/
 
 theme:
@@ -56,13 +56,18 @@ nav:
   - Hardware:
       - Specifications: hardware/specifications.md
       - Wiring & Connections: hardware/wiring.md
+      - LED Indicators: hardware/indicators.md
+      - Replacing a Driver: hardware/driver-replacement.md
   - Setup:
       - Installing Firmware: setup/firmware.md
       - Dragonframe Configuration: setup/dragonframe.md
+      - Triggers, Switches & Relay: setup/triggers.md
       - E-Stop Setup: setup/estop.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
   - Support: support.md
+  - References: references.md
+  - Planned Illustrations: image-plan.md
 
 extra:
   social:

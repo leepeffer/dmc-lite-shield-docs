@@ -1,149 +1,41 @@
-# Frequently Asked Questions
+# Frequently asked questions
 
-Common questions about the DMC Lite Shield.
+## Which replacement driver chip do I buy?
 
-## General Questions
+For V2 socketed DIP: **TI AM26C31INE4**, 16-pin PDIP (N), or TI's equivalent **AM26C31IN** ordering code. Follow the [replacement guide](hardware/driver-replacement.md). This is the shield's signal IC, not the external motor power driver.
 
-### Does the DMC Lite Shield come with an Arduino Giga?
+## Can I plug the RJ45 ports into a network?
 
-**No**, the DMC Lite Shield does not include an Arduino Giga. You need to:
+No. They carry motion signals and accessory +5 V, not Ethernet. See [pinouts](hardware/wiring.md).
 
-- Purchase an Arduino Giga R1 WiFi separately
-- Install the DMC Lite firmware sketch yourself
+## Does the shield power my motors?
 
-However, if you're interested in receiving a pre-flashed Arduino Giga bundle, contact the manufacturer to discuss available options.
+No. Each motor needs an external driver and suitable motor supply. Do not use the connector's +5 V accessory pins for motor power.
 
-### Is this a replacement for the DMC-32?
+## Does a channel LED prove the motor moved?
 
-Both yes and no. The DMC Lite serves the same purpose as the DMC-32 but has fewer features:
+No. It shows STEP signal activity, without position or driver feedback. See [LED meanings](hardware/indicators.md).
 
-**Similarities**:
+## Is the relay another independent trigger beyond LOG1 and LOG2?
 
-- Provides motion control for Dragonframe
-- Uses RJ45 cables wired exactly like the DMC-32
-- Controls stepper motor drivers
+No. **LOG1 drives the relay**; LOG2 is available at J5 pin 2. Relay pins 3/4 are a floating contact pair, not voltage outputs.
 
-**Key Differences**:
+## Can I use a button to shoot a frame?
 
-- **Channel Limit**: DMC Lite supports only 8 channels (vs more on DMC-32)
-- **Virtuals Mode**: DMC Lite cannot run in Virtuals mode like the DMC-32
+Yes, with the SWITCH input enabled in firmware and the action assigned in Dragonframe. Wire a normally open button from J5 pin 5 to GND; see [triggers](setup/triggers.md).
 
-The DMC Lite is ideal for motion control setups requiring up to 8 axes. For larger setups or those requiring Virtuals mode, the DMC-32 remains the better choice.
+## Does the stop button cut motor power?
 
-## Compatibility
+No. It requests a firmware stop and must be enabled/configured. It is not a safety-rated power disconnect. See [E-stop setup](setup/estop.md).
 
-### Does this run the DF Moco Sketch?
+## Is this the same as a DMC-32?
 
-**No**, the DMC Lite Shield does not run the standard DF Moco sketch. It runs a new, dedicated DMC Lite sketch which has been significantly improved and can run motors in real-time.
+No. dmc-lite provides eight axes without crane virtualization or physical DMX output. Similar connector conventions do not establish all features or cable/load compatibility.
 
-This new firmware provides better performance for real-time motor control operations.
+## Does this guide apply to V1?
 
-### Can the DMC Lite Shield run motors directly?
+No. It describes the October 16, 2026 V2 socketed DIP design. Confirm your revision before using the pinouts or service procedure.
 
-**No**, the DMC Lite Shield outputs high-quality, buffered 5V step and direction signals. These signals must connect to a stepper motor driver to operate a motor.
+## Are firmware, cables or the GIGA included?
 
-You will need:
-
-- One stepper motor driver per axis/motor
-- Appropriate power supply for your drivers and motors
-- Connection cables (RJ45 or DB37)
-
-See [Prerequisites](getting-started/prerequisites.md) for a complete component list.
-
-### What Arduino boards are compatible?
-
-The DMC Lite Shield is designed specifically for the **Arduino Giga R1 WiFi** and is not compatible with other Arduino models. The shield is designed to mount perfectly and communicate seamlessly with the Arduino Giga.
-
-## Setup & Requirements
-
-### What else do I need for a complete motion control setup in Dragonframe?
-
-Besides the DMC Lite Shield and Arduino Giga, you'll need:
-
-1. **Stepper Motor Drivers** - One per axis (motor)
-2. **Stepper Motors** - Appropriate for your rig's requirements
-3. **Connection Cables** - RJ45 cables (DMC-32 compatible) or DB37 cable for legacy hardware
-4. **Dragonframe Software** - For motion control
-5. **Power Supplies** - For drivers and motors
-6. **Computer** - To run Dragonframe and connect to the Arduino Giga
-
-See the [Prerequisites](getting-started/prerequisites.md) page for detailed information.
-
-### How do I install the Dragonframe sketch on the Arduino Giga?
-
-Follow the instructions in the `README.rtf` file located in the `Dragonframe > Resources > Arc Motion Control > dmc` folder.
-
-For detailed guidance, see our [Firmware Installation](setup/firmware.md) page.
-
-### How do I enable the e-stop functionality?
-
-To enable the e-stop feature:
-
-1. Open the DMC Lite firmware sketch in Arduino IDE
-2. Navigate to the `config.h` file for the `dmc_m7` core
-3. Uncomment the line: `#define KILL_SWITCH_PIN D48`
-4. Save and upload the modified firmware to your Arduino Giga
-
-See the [E-Stop Setup](setup/estop.md) page for complete instructions and wiring details.
-
-## Ordering & Availability
-
-### How many units are kept in stock?
-
-Due to the low production volume of this product, limited stock is maintained. However, units may be available for immediate shipping.
-
-**Recommendation**: Contact the manufacturer to check current availability.
-
-### How fast can these be shipped?
-
-**Regular Orders**: If units are in stock, shipping time depends on your location and selected shipping method.
-
-**Bulk Orders**: For orders of 5 or more units, the manufacturer can manufacture and ship anywhere in the world within **12 days**.
-
-### Where can I buy the DMC Lite Shield?
-
-Visit [www.dmclite.com](https://www.dmclite.com) for ordering information.
-
-## Version Information
-
-### What is the status of V2?
-
-As of October 10, 2026, V2 of the DMC Lite Shield is in development:
-
-**Development Progress**:
-
-1. ✓ Plan - Done
-2. ✓ Layout - Done
-3. ⏳ Routing - In progress
-4. Prototype production - Next
-5. Prototype testing - Upcoming
-6. Final order - Upcoming
-
-You can show interest in V2 (without commitment) by filling out the form on the [DMC Lite website](https://www.dmclite.com).
-
-!!! info "Current Version"
-    This documentation covers the current version of the DMC Lite Shield. Version-specific information will be added as V2 becomes available.
-
-## Support
-
-### I need help with motion control. Are you available?
-
-**Yes!** The manufacturer offers support and consultation for motion control setups.
-
-See the [Support](support.md) page for contact information.
-
-### Where can I find technical specifications?
-
-See the [Hardware Specifications](hardware/specifications.md) page for detailed technical information about the shield.
-
-### I have a question that's not answered here
-
-Please check:
-
-1. Other documentation pages in this manual
-2. The [Troubleshooting](troubleshooting.md) page
-3. Contact support via the [Support](support.md) page
-
----
-
-**Can't find what you're looking for?** See the [Support](support.md) page for help.
+Check your order and packing list. See [shipment checks](getting-started/whats-in-the-box.md). Availability, shipping estimates, warranty and bundle contents must come from the seller, not assumptions in this manual.

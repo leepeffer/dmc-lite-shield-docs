@@ -1,146 +1,37 @@
-# E-Stop (Emergency Stop) Setup
+# E-stop input
 
-The DMC Lite Shield includes an optically isolated emergency stop (e-stop) output for safely shutting down motor movement in case of emergency.
+J5 pin 6 is an **input** for a stop contact. It is not an output and does not remove motor power. Although its circuit includes an optocoupler, shared grounds mean the shield is not fully galvanically isolated.
 
-## Overview
+Treat this as a firmware stop request, not a safety-rated emergency-stop system. A rig that can injure someone or drop a load needs an appropriate independent stopping arrangement. Motors may remain energized after STEP pulses stop.
 
-The e-stop feature provides:
+## Wire and configure together
 
-- **Optical isolation** for electrical safety
-- **Quick shutdown** of all motor operations
-- **Integration** with external e-stop systems
+With power off, connect the stop contact between **J5 pin 6 and GND (pin 1 or 7)**. Do not apply an external voltage. Grounding pin 6 pulls GIGA **D48 low**.
 
-!!! warning "Firmware Configuration Required"
-    The e-stop functionality is **disabled by default** and must be enabled in the firmware configuration before use.
+Enable the GIGA M7 configuration:
 
-## Enabling E-Stop in Firmware
+```cpp
+#define KILL_SWITCH_PIN D48
+```
 
-To enable the e-stop functionality:
+The archived prototype configurations have this disabled. A wired button alone does not enable stopping.
 
-1. Open the DMC Lite firmware sketch in Arduino IDE (see [Firmware Installation](firmware.md) for location)
+| Firmware mode | Contact during normal operation | Stop condition |
+|---|---|---|
+| Normally open, low asserts stop | Open | Closing contact to ground |
+| Normally closed, supported/configured firmware | Closed to ground | Opening contact |
 
-2. Navigate to the `config.h` file for the `dmc_m7` core
+The official Dragonframe 2026 firmware includes `KILL_SWITCH_NORMALLY_CLOSED`; the older local prototype candidate does not implement it. Adding a define to firmware that lacks the implementation does nothing. Use the matching official M4/M7 pair and follow its configuration comments if normally-closed operation is required. See [firmware](firmware.md).
 
-3. Find the following line (it will be commented out):
+**D1 lights when the terminal is grounded.** With normally-closed wiring, that may mean the normal, unpressed state; the LED can go out when stopping. It does not confirm the software acted.
 
-   ```cpp
-   // #define KILL_SWITCH_PIN D48
-   ```
+> **Image placeholder — stop wiring:** J5 pin 6 and GND, with separate NO and NC diagrams and a state table. Label the firmware mode on each drawing; show that motor power is separate.
 
-4. Uncomment the line by removing the `//`:
+## Test before motion
 
-   ```cpp
-   #define KILL_SWITCH_PIN D48
-   ```
+1. Keep motor power off. Verify the open and closed contact states electrically, and that firmware interprets each correctly.
+2. Test a disconnected/broken switch wire. A normally-open circuit cannot distinguish this from a released button. Confirm the chosen normally-closed implementation responds to an open wire.
+3. With travel clear and independent stopping available, enable one axis and test at low speed. Confirm the stop response and actual stopping distance.
+4. Release/reset the contact deliberately. Verify the rig does not make an unexpected move and establish how motion is resumed in your setup.
 
-5. Save the file
-
-6. Upload the modified firmware to your Arduino Giga (see [Firmware Installation](firmware.md) for upload instructions)
-
-## Hardware Connection
-
-!!! warning "TODO: Connection Details Needed"
-    Detailed information about the e-stop connector, wiring, and external connections is not available on the dmclite.com website.
-
-<!-- TODO: Add:
-- E-stop connector type and location on the shield
-- Pin assignments or terminal labels
-- Wiring diagram for external e-stop button/switch
-- Electrical specifications (voltage, current)
-- Normally open vs normally closed configuration
-- How the optical isolation is implemented
--->
-
-### Connecting an External E-Stop Button
-
-<!-- TODO: Add step-by-step connection instructions -->
-
-## How E-Stop Works
-
-When the e-stop is triggered:
-
-1. The DMC Lite Shield immediately stops sending step signals to all motor drivers
-2. Motors will hold their current position (assuming drivers are powered and holding torque)
-3. Motion must be manually resumed after clearing the e-stop condition
-
-!!! danger "Safety Note"
-    The e-stop signal from the DMC Lite Shield controls the motion control signals only. Your motor drivers may continue to power the motors (holding torque). For complete system shutdown, implement additional safety measures at the driver or power supply level.
-
-## Testing the E-Stop
-
-After enabling and connecting the e-stop:
-
-1. **Initial Test (Safe Position)**
-   - Position all rig components in a safe location
-   - Ensure nothing can be damaged if motion stops abruptly
-
-2. **Activate E-Stop Before Motion**
-   - Trigger the e-stop
-   - Attempt to move motors via Dragonframe
-   - Verify that motors do not move
-
-3. **Activate E-Stop During Motion**
-   - Start a slow, safe motion move
-   - Trigger the e-stop mid-motion
-   - Verify that motion stops immediately
-   - Check that motors hold position
-
-4. **Reset E-Stop**
-   - Clear the e-stop condition
-   - Verify that motion control can resume
-
-!!! tip "Regular Testing"
-    Test your e-stop system regularly to ensure it's functioning correctly. Include e-stop testing in your pre-shoot safety checklist.
-
-## E-Stop Best Practices
-
-### Safety Considerations
-
-- **Always have an e-stop accessible** during motion control operations
-- **Position e-stop button** where operators can reach it quickly
-- **Test before each session** to verify e-stop functionality
-- **Train all operators** on e-stop location and usage
-- **Consider multiple e-stop stations** for larger rigs
-
-### System Design
-
-- Combine DMC Lite e-stop with driver-level safety features for redundancy
-- Consider adding physical hard stops or limit switches to prevent mechanical damage
-- Document your e-stop wiring and configuration for maintenance
-
-### Limitations
-
-!!! warning "E-Stop Scope"
-    The DMC Lite Shield e-stop controls only the step/direction signals. It does not:
-    
-    - Cut power to motor drivers
-    - Control camera shutters
-    - Disable other equipment
-    
-    Design your complete safety system accordingly.
-
-## Troubleshooting E-Stop Issues
-
-### E-Stop Not Working
-
-1. Verify the firmware has been modified and uploaded with `KILL_SWITCH_PIN D48` uncommented
-2. Check e-stop wiring and connections
-3. Test e-stop switch/button continuity with a multimeter
-4. Verify the e-stop is properly connected to the designated pin <!-- TODO: Add pin location -->
-
-### False E-Stop Triggers
-
-1. Check for loose connections in e-stop wiring
-2. Verify proper grounding and shielding if using long cables
-3. Check for electrical noise from nearby equipment
-4. Verify correct normally-open or normally-closed configuration <!-- TODO: Specify which -->
-
-### Motors Don't Hold Position After E-Stop
-
-- This is a driver configuration issue, not a DMC Lite issue
-- Check your driver's hold current settings
-- Ensure drivers remain powered when e-stop is triggered
-
----
-
-**Next:** [Troubleshooting](../troubleshooting.md) for additional help with common issues.
+Repeat after firmware changes or rewiring. If the LED changes but motion is not inhibited, disable motor power and check the selected firmware mode, D48 configuration and uploaded M7 sketch. Do not continue motion tests with an unverified stop.
