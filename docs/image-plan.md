@@ -13,6 +13,8 @@ Use a real board photograph or a verified CAD rendering as the base. Keep physic
 | Driver service | U1/U2/U5/U6 channel pairs, verified PCB pin 1 and IC notch alignment | [Replacement](hardware/driver-replacement.md) |
 | Camera cable | Measured J6 pad-to-plug mapping and named camera cable | [Wiring](hardware/wiring.md) |
 | Stop wiring | Separate NO and NC diagrams with firmware mode and normal/pressed/broken-wire states | [E-stop](setup/estop.md) |
+| Sketch locations | Finder / File Explorer installation folder, README and both sketch folders | [Flashing](setup/firmware.md) |
+| Arduino uploads | M7/M4 target cores, flash split, port, Upload button and success result | [Flashing](setup/firmware.md) |
 | Dragonframe connection | Connected dmc-lite, ArcMoco assignment, port selector | [Dragonframe](setup/dragonframe.md) |
 | Dragonframe triggers | Actual connected output selectors and confirmed physical mapping | [Triggers](setup/triggers.md) |
 

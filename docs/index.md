@@ -16,7 +16,7 @@ The shield connects Dragonframe to up to eight external motor drivers. It mounts
 | Replace a damaged driver chip | [Replacement parts and procedure](hardware/driver-replacement.md) |
 | Trigger a camera accessory or work light | [Triggers, switches and relay](setup/triggers.md) |
 | Connect a stop button | [E-stop input](setup/estop.md) |
-| Install or update firmware | [Firmware](setup/firmware.md) |
+| Find the Dragonframe sketches and flash the Arduino | [Step-by-step flashing guide](setup/firmware.md) |
 | Diagnose a problem | [Troubleshooting](troubleshooting.md) |
 
 The shield sends control signals; external drivers supply motor power. Its RJ45 ports are **not Ethernet**. Turn off and disconnect power before changing cables or removing ICs.

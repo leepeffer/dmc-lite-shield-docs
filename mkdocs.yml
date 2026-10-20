@@ -59,7 +59,7 @@ nav:
       - LED Indicators: hardware/indicators.md
       - Replacing a Driver: hardware/driver-replacement.md
   - Setup:
-      - Installing Firmware: setup/firmware.md
+      - Find Sketches & Flash Arduino: setup/firmware.md
       - Dragonframe Configuration: setup/dragonframe.md
       - Triggers, Switches & Relay: setup/triggers.md
       - E-Stop Setup: setup/estop.md
