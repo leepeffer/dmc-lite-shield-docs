@@ -8,6 +8,8 @@ hide:
 
 This guide covers the **V2 socketed DIP board** and Arduino GIGA R1 WiFi.
 
+**What’s new in V2?** Differential outputs, replaceable drivers, per-axis lights and expanded trigger controls. [Compare V1 and V2 in the changelog](changelog.md).
+
 ## Start here: your first motor movement
 
 1. **[Connect the hardware](getting-started/overview.md).** Check cables and mount the shield with all power disconnected. Keep motor power off.

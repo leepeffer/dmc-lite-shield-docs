@@ -49,6 +49,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Changelog: changelog.md
   - Start Here:
       - 1. Connect Hardware: getting-started/overview.md
       - 2. Flash Arduino: setup/firmware.md
