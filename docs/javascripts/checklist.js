@@ -27,7 +27,7 @@
   function summary() {
     const pass = rows.filter(r => current.results[r.dataset.test] === 'pass').length;
     const fail = rows.filter(r => current.results[r.dataset.test] === 'fail').length;
-    return `${pass} passed · ${fail} failed · ${rows.length - pass - fail} not tested. Completion does not approve shipment.`;
+    return `${pass} passed · ${fail} failed · ${rows.length - pass - fail} not tested.`;
   }
   function refreshPicker() {
     picker.replaceChildren(...state.records.map((r, i) => {
