@@ -1,0 +1,22 @@
+#board-checklist { --test-border: var(--md-default-fg-color--lighter); }
+#board-checklist input, #board-checklist textarea, #board-checklist select, #board-checklist button { font: inherit; }
+#board-checklist input[type=text], #board-checklist input[type=date], #board-checklist textarea, #board-checklist select { color: var(--md-default-fg-color); background: var(--md-default-bg-color); border: 1px solid var(--test-border); border-radius: .2rem; padding: .5rem; width: 100%; }
+#board-checklist :focus-visible { outline: 2px solid var(--md-accent-fg-color); outline-offset: 3px; }
+.test-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.test-tools[hidden] { display: none; }
+#board-checklist .test-tools select { width: auto; max-width: 100%; }
+#board-checklist button { padding: .55rem .8rem; border: 1px solid var(--md-primary-fg-color); border-radius: .2rem; color: var(--md-typeset-a-color); cursor: pointer; }
+#board-checklist button:hover { background: var(--md-accent-fg-color--transparent); }
+.test-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.test-fields label, .test-notes { display: block; font-weight: 600; }
+.test-fields input, .test-notes textarea { display: block; margin-top: .3rem; font-weight: 400; }
+.test-row { display: flex; align-items: center; gap: 1rem; justify-content: space-between; padding: .65rem 0; border-bottom: 1px solid var(--test-border); }
+.test-row p { margin: 0; flex: 1; }
+.test-options { display: flex; flex-shrink: 0; gap: .75rem; }
+.test-options label { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; cursor: pointer; }
+.test-options input { width: 1rem; height: 1rem; accent-color: var(--md-primary-fg-color); }
+.test-notes { margin-top: 1rem; }
+#board-checklist textarea { resize: vertical; }
+#test-progress { font-weight: 600; font-variant-numeric: tabular-nums; }
+@media (max-width: 40rem) { .test-fields { grid-template-columns: 1fr; } .test-row { align-items: flex-start; flex-direction: column; gap: .25rem; } }
+@media print { .test-tools, #test-save { display: none; } .test-row { break-inside: avoid; } #board-checklist textarea { height: auto; min-height: 5rem; } }

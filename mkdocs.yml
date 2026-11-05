@@ -64,6 +64,7 @@ nav:
   - Controls:
       - Triggers, Switches & Relay: setup/triggers.md
       - E-Stop Setup: setup/estop.md
+  - Board Testing: testing.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
   - Support: support.md
@@ -77,3 +78,7 @@ extra:
 
 extra_css:
   - stylesheets/guide.css
+  - stylesheets/checklist.css
+
+extra_javascript:
+  - javascripts/checklist.js
