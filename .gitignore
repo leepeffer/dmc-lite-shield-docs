@@ -38,3 +38,7 @@ wheels/
 # Temporary files
 *.bak
 *.tmp
+
+# Published V2 sketch downloads
+!/docs/downloads/
+!/docs/downloads/*.zip

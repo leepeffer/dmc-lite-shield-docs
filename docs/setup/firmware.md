@@ -26,6 +26,27 @@ If your GIGA arrived configured, record its firmware version and input options b
 
 
 
+## Ready-to-upload V2 sketches
+
+These packages already enable **E-stop (D48)** and the **external button (D49)**. Choose the E-stop contact type you actually wired:
+
+| Download | E-stop behavior |
+|---|---|
+| [Normally-open E-stop ZIP](../downloads/dmc-lite-v2-2026-11-05-normally-open.zip) | Contact closes to stop |
+| [Normally-closed E-stop ZIP](../downloads/dmc-lite-v2-2026-11-05-normally-closed.zip) | Contact opens to stop; an unwired input holds the board stopped |
+
+For the **V2 socketed DIP shield + GIGA R1 only**, not V1. Both include matching M7/M4 sketches, all supporting files and `START-HERE.txt`. No sketch edits needed for these settings.
+
+1. Extract the ZIP and keep its folders intact.
+2. Upload `dmc_m7/dmc_m7.ino` to **Main core**.
+3. Upload `dmc_m4/dmc_m4.ino` to **M4 Co-processor**.
+4. Use **1.5MB M7 + 0.5MB M4** for both; keep motor power off while uploading.
+5. Set the button action in **Scene → Triggers**, then use the [board checklist](../testing.md).
+
+**Build checked, hardware testing pending.** Prepared November 5, 2026 from the preserved Dragonframe 2026 sketches; both E-stop variants and the shared M4 compile with Arduino Mbed OS Giga Boards **4.5.0**. Original Dragonframe/DZED notices are retained. This is our V2 configuration, not an official Dragonframe release. See the ZIP’s build record and checksums.
+
+Prefer your installed Dragonframe sketches? Follow the manual setup below.
+
 ## 1. Find the sketches on your computer
 
 Install Dragonframe first. Its official dmc-lite sketches are included in:

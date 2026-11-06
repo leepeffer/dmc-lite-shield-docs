@@ -5,6 +5,8 @@ A practical check that the board works with your setup. Tick **Pass** or **Fail*
 !!! warning "Check your motor cables"
     V2 RJ45 pins **2 and 6 are not grounds**. Check old cables before using them; these ports are not Ethernet. See [V2 pinouts](hardware/wiring.md), [firmware setup](setup/firmware.md) and [E-stop setup](setup/estop.md).
 
+**Want to skip sketch editing?** [Download the preconfigured V2 sketches](setup/firmware.md#ready-to-upload-v2-sketches). Choose the version matching your E-stop contact.
+
 ??? info "Before testing: enable E-stop and the external button"
     Open **`dmc_m7.ino` → `config.h`** in Arduino IDE. Under `#ifdef ARDUINO_ARCH_MBED_GIGA`, remove the `//` from these existing lines:
 
