@@ -131,16 +131,51 @@ If the GIGA cannot accept an upload, follow [Arduino's GIGA recovery guidance](h
 
 ## V2 input and output settings
 
-In the **GIGA section** of M7 `config.h`, enable the options you intend to use:
+Open **`dmc_m7.ino`**, then its **`config.h`** tab. Find `#ifdef ARDUINO_ARCH_MBED_GIGA` near the top. Make the following changes there, not in the Portenta section.
+
+### E-stop and external button
+
+Remove the leading `//` from the existing lines for the inputs you want to use:
 
 ```cpp
 #define KILL_SWITCH_PIN D48
 #define LOGIC_SWITCH_PIN D49
 ```
 
-Do not duplicate existing definitions; uncomment/edit them. Review [E-stop polarity](estop.md) before enabling the stop. SWITCH uses a normally open contact to ground. Both features are disabled in the archived prototype configurations.
+Do not duplicate the definitions. These options are disabled in the archived prototype configurations.
 
-V2 follows STEP D22/D24…D36, DIR D23/D25…D37, LOG1 D40, LOG2 D41, meter D52 and shutter D53. See the [full mapping](../hardware/wiring.md#giga-signals-for-firmware-configuration). Avoid older pin-swapped V1 configurations.
+| Input | Connection | What happens |
+|---|---|---|
+| E-stop, normally open | J5 **6** → stop contact → GND **1 or 7** | Closing the contact requests a stop |
+| External button, normally open | J5 **5** → button → GND **1 or 7** | Pressing requests the action selected in **Scene → Triggers** |
+
+Use voltage-free contacts; do not feed external voltage into these inputs.
+
+**If your E-stop contact is normally closed:** use the official Dragonframe 2026 matched sketches and also uncomment:
+
+```cpp
+#define KILL_SWITCH_NORMALLY_CLOSED 1
+```
+
+Opening the contact then requests the stop. Leave that line commented for normally-open wiring. The older local prototype sketch does not implement this option; adding the line there will not enable it. Use the supported sketch pair instead. See [E-stop setup](estop.md) and check the actual contact behavior before moving motors.
+
+### What needs no extra enable setting
+
+| Feature | Sketch setting / action |
+|---|---|
+| LOG1 relay | Keep `#define LOGIC_OUT_0 D40`; choose its output event in Dragonframe |
+| LOG2 trigger | Keep `#define LOGIC_OUT_1 D41`; choose its output event in Dragonframe |
+| Differential motor outputs | Hardware handles this; use the standard V2 STEP/DIR pins |
+| Activity and control LEDs | Hardware-driven; no sketch change |
+| Camera meter / shutter | Keep the standard M4 assignments: D52 / D53 |
+
+No M4 edits are needed to enable these features. V2 uses STEP D22/D24…D36 and DIR D23/D25…D37. Do not use the older V1 pin-swapped configuration. See the [full pin mapping](../hardware/wiring.md#giga-signals-for-firmware-configuration).
+
+### Upload after editing
+
+With motor power off, save and **Upload** M7 with **Target core → Main core** and **Flash split → 1.5MB M7 + 0.5MB M4**. Verify alone does not install the changes.
+
+For a fresh setup or a firmware version change, upload the matching M4 as described above. If that matching M4 is already installed, changing only these M7 settings requires only the M7 upload. Reconnect Dragonframe and try the inputs before normal motion.
 
 ## Verify the installation
 

@@ -5,6 +5,28 @@ A practical check that the board works with your setup. Tick **Pass** or **Fail*
 !!! warning "Check your motor cables"
     V2 RJ45 pins **2 and 6 are not grounds**. Check old cables before using them; these ports are not Ethernet. See [V2 pinouts](hardware/wiring.md), [firmware setup](setup/firmware.md) and [E-stop setup](setup/estop.md).
 
+??? info "Before testing: enable E-stop and the external button"
+    Open **`dmc_m7.ino` → `config.h`** in Arduino IDE. Under `#ifdef ARDUINO_ARCH_MBED_GIGA`, remove the `//` from these existing lines:
+
+    ```cpp
+    #define KILL_SWITCH_PIN D48
+    #define LOGIC_SWITCH_PIN D49
+    ```
+
+    Enable only the inputs you are using. Edit the existing lines—do not add duplicates or change the Portenta section.
+
+    - **E-stop:** connect J5 **6** to GND through the stop contact. The default above stops when the contact **closes**.
+    - **Normally-closed E-stop:** in the official Dragonframe 2026 sketches, also uncomment `#define KILL_SWITCH_NORMALLY_CLOSED 1`. This stops when the contact **opens**. Leave this line commented for a normally-open contact. Older sketches may not support it.
+    - **External button:** normally-open button between J5 **5** and GND. Choose its action in Dragonframe’s **Scene → Triggers**.
+
+    Use J5 **1 or 7** for GND; do not feed voltage into either input. Test stop behavior before moving motors.
+
+    **Relay, LOG2, differential motor outputs and activity lights need no extra enable lines.** Keep the standard V2 output pins: `LOGIC_OUT_0 D40` (relay) and `LOGIC_OUT_1 D41` (LOG2). Set output events in Dragonframe. No M4 edits are needed for these features.
+
+    **Upload the changes:** with motor power off, upload M7 to **Main core**. For a fresh setup or firmware version change, also upload its matching M4 sketch to **M4 Co-processor**. Use **1.5MB M7 + 0.5MB M4** for both. If the matching M4 is already installed, this M7-only settings change needs only an M7 upload.
+
+    [Full firmware instructions](setup/firmware.md#v2-input-and-output-settings) · [E-stop wiring and polarity](setup/estop.md)
+
 <div id="board-checklist">
 <noscript>Enable JavaScript to save progress and download results. Printed checkboxes can still be used as a paper checklist.</noscript>
 <div class="test-tools" hidden>
