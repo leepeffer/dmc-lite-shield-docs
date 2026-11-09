@@ -1,5 +1,8 @@
 # Triggers, switches and relay
 
+!!! warning "First five V2 boards — swapped pinouts"
+    Use the [corrected batch firmware](firmware.md#first-five-v2-boards-swapped-pinouts): LOG1/relay is **D41**, LOG2 is **D40**, and SWITCH is **D48**. External terminal wiring is unchanged. Arduino pin references below describe the standard mapping; do not copy those pin settings into the batch firmware.
+
 A trigger **output** tells another device when a Dragonframe event occurs. The SWITCH **input** lets a pushbutton request an action in Dragonframe. The E-stop input has a separate purpose; see [E-stop](estop.md).
 
 ## Choose the right connection

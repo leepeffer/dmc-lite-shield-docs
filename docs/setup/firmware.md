@@ -28,7 +28,24 @@ If your GIGA arrived configured, record its firmware version and input options b
 
 ## Ready-to-upload V2 sketches
 
-These packages already enable **E-stop (D48)** and the **external button (D49)**. Choose the E-stop contact type you actually wired:
+### First five V2 boards — swapped pinouts
+
+**Use this corrected package only for the first five V2 boards with reversed Arduino header pin assignments.** It is the original Dragonframe sketch pair with corrected pin definitions, not the standalone diagnostic sketch.
+
+**[Download: first five V2 boards — swapped pinouts — normally-open E-stop](../downloads/dmc-lite-v2-first-five-swapped-pinouts-2026-11-09-normally-open.zip)**
+
+- Corrects all eight STEP/DIR pairs, camera meter/shutter, logic outputs, E-stop and external button. Dragonframe motion and communication code is unchanged.
+- **Normally-open E-stop:** closing the contact requests a stop. E-stop uses **D49**; the external button uses **D48**. External connector wiring is unchanged.
+- **Upload both sketches:** `dmc_m7` to **Main core**, then `dmc_m4` to **M4 Co-processor**. Use **1.5MB M7 + 0.5MB M4** for both, with motor power off. Uploading only M7 will not fix the motor pins.
+- After both uploads, disconnect all GIGA/shield power, including USB, then reconnect and test in Dragonframe. Full instructions are in `START-HERE.txt` inside the ZIP.
+
+**Both cores compile; physical-board testing is pending.** Prepared November 9, 2026 with Arduino Mbed OS Giga Boards **4.5.0**. Verify stop behavior and test one unloaded motor slowly in both directions before completing the [board checklist](../testing.md). Original Dragonframe/DZED notices are preserved; this is our batch configuration, not an official Dragonframe release.
+
+Do not use this package on V1 or boards corrected to the standard pin mapping. Do not use the standard-pin downloads or manual pin settings below on these first five boards. See the [two pin mappings](../hardware/wiring.md#giga-signals-for-firmware-configuration).
+
+### Standard pin mapping — not for the first five boards
+
+These packages use the standard assignments and already enable **E-stop (D48)** and the **external button (D49)**. They do **not** correct the first batch's swapped pinouts. For hardware with the standard mapping, choose the E-stop contact type you actually wired:
 
 | Download | E-stop behavior |
 |---|---|
@@ -151,6 +168,8 @@ Record your Dragonframe release, Arduino board-core version and enabled input op
 If the GIGA cannot accept an upload, follow [Arduino's GIGA recovery guidance](https://docs.arduino.cc/tutorials/giga-r1-wifi/cheat-sheet). Double-pressing **RST** enters its bootloader/DFU mode; recheck the port before retrying. Do not change wiring or firmware pin assignments to solve a USB upload failure.
 
 ## V2 input and output settings
+
+**Standard pin mapping only.** For the first five V2 boards, use the [corrected batch package above](#first-five-v2-boards-swapped-pinouts); its pin settings are already configured. Do not overwrite them with the standard values below.
 
 Open **`dmc_m7.ino`**, then its **`config.h`** tab. Find `#ifdef ARDUINO_ARCH_MBED_GIGA` near the top. Make the following changes there, not in the Portenta section.
 

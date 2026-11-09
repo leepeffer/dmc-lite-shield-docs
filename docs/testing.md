@@ -7,7 +7,10 @@ A practical check that the board works with your setup. Tick **Pass** or **Fail*
 
 **Want to skip sketch editing?** [Download the preconfigured V2 sketches](setup/firmware.md#ready-to-upload-v2-sketches). Choose the version matching your E-stop contact.
 
-??? info "Before testing: enable E-stop and the external button"
+!!! warning "First five V2 boards — swapped pinouts"
+    Use the [corrected normally-open firmware for the first five boards](setup/firmware.md#first-five-v2-boards-swapped-pinouts) and upload **both M7 and M4**. Its E-stop is **D49** and external button is **D48**. Do not apply the standard-pin settings below to this batch. Compilation passed; use this checklist to record physical-board results.
+
+??? info "Standard pin mapping only: enable E-stop and the external button"
     Open **`dmc_m7.ino` → `config.h`** in Arduino IDE. Under `#ifdef ARDUINO_ARCH_MBED_GIGA`, remove the `//` from these existing lines:
 
     ```cpp

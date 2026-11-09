@@ -1,5 +1,8 @@
 # E-stop input
 
+!!! warning "First five V2 boards — swapped pinouts"
+    Use the [corrected batch firmware](firmware.md#first-five-v2-boards-swapped-pinouts). On these boards E-stop uses **D49**, not D48; the external switch uses **D48**. J5 contact wiring is unchanged. The manual D48 settings below apply to the standard pin mapping. The batch download is configured for a **normally-open** E-stop.
+
 J5 pin 6 is an **input** for a stop contact. It is not an output and does not remove motor power. Although its circuit includes an optocoupler, shared grounds mean the shield is not fully galvanically isolated.
 
 Treat this as a firmware stop request, not a safety-rated emergency-stop system. A rig that can injure someone or drop a load needs an appropriate independent stopping arrangement. Motors may remain energized after STEP pulses stop.

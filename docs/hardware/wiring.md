@@ -200,14 +200,16 @@ A remote-release connection does not provide live view or image transfer. Follow
 
 ## GIGA signals for firmware configuration
 
-| Function | GIGA pins |
-|---|---|
-| STEP 1–8 | D22, D24, D26, D28, D30, D32, D34, D36 |
-| DIR 1–8 | D23, D25, D27, D29, D31, D33, D35, D37 |
-| LOG1 / relay | D40 |
-| LOG2 | D41 |
-| E-stop input | D48 |
-| SWITCH input | D49 |
-| Camera meter / shutter | D52 / D53 |
+The **first five V2 boards have swapped Arduino header pinouts** and need the [corrected batch firmware](../setup/firmware.md#first-five-v2-boards-swapped-pinouts). RJ45 and external terminal assignments above are unchanged.
+
+| Function | Standard mapping | First five V2 boards — swapped pinouts |
+|---|---|---|
+| STEP 1–8 | D22, D24, D26, D28, D30, D32, D34, D36 | D23, D25, D27, D29, D31, D33, D35, D37 |
+| DIR 1–8 | D23, D25, D27, D29, D31, D33, D35, D37 | D22, D24, D26, D28, D30, D32, D34, D36 |
+| LOG1 / relay | D40 | D41 |
+| LOG2 | D41 | D40 |
+| E-stop input | D48 | D49 |
+| SWITCH input | D49 | D48 |
+| Camera meter / shutter | D52 / D53 | D53 / D52 |
 
 These numbers describe the V2 wiring. Do not reuse a V1 pin-swapped firmware configuration.
